@@ -31,7 +31,7 @@ A project I was working was given a file that mapped the 32bit address space int
 
 Future enhancements:
 * compressing and decompressing the file
-* optimizing the Writer so that it faster for index files with long sequences of 1s or 0s
+* <del>optimizing the Writer so that it faster for index files with long sequences of 1s or 0s</del> A `block_size` option has been added to enable long blocks of zeros.  On my laptop, the creation of a 530M index with index values went from 10 minutes to about a minute using `{block_size: 1024*1024}`.
 * allowing the Writer to set and unset individual bits
 
 # Limitations

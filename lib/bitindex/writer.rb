@@ -3,7 +3,8 @@ module Bitindex
     include Bitindex::Common
 
     attr_reader :filepath, :size
-    attr_accessor :ltor
+    attr_reader :ltor
+    attr_reader :block_size
 
     def initialize filepath, size, opts = {}
       raise "#{ size } is invalid size" unless size and size.to_i > 0
@@ -13,6 +14,7 @@ module Bitindex
       @filepath = filepath
 
       @ltor = !(opts[:ltor] == false)
+      @block_size = (opts[:block_size] and opts[:block_size].to_i > 0) ? opts[:block_size].to_i : 1024
     end
 
     def write sorted
@@ -45,9 +47,17 @@ protected
 
     def pad_to_pos io, start, last
       while start < last
-        io.putc 0
-        start += 1
-      end
+        diff = last - start
+        if diff > self.block_size
+          a = Array.new(self.block_size, 0)
+          io.write(a.pack('C' * self.block_size))
+          start += self.block_size
+        else
+          a = Array.new(diff, 0)
+          io.write(a.pack('C' * diff))
+          start = last
+        end
+      end       
     end
   end
 end

@@ -49,5 +49,22 @@ describe Bitindex::Writer do
 
       FileUtils.rm filepath
     end
+
+    it 'writes a sparse multi-byte file' do
+      filepath = 'file.bit'
+      filesize = 1024
+      w = Bitindex::Writer.new filepath, filesize
+      w.write [1,2,3,8000]
+
+      File.open(filepath, 'rb') do |io|
+        io.size.should == filesize
+        io.seek(999, IO::SEEK_SET)
+        io.getbyte.should == 0x00
+        io.getbyte.should == 0x80
+        io.getbyte.should == 0x00
+      end
+
+      FileUtils.rm filepath
+    end
   end
 end
