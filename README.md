@@ -27,7 +27,12 @@ require 'bitindex'
 
 # Specifics
 
-A project I was working was given a file that mapped the 32bit address space into a 530MB file where bits set to 1 indicated integer values that were set.  I decided to expand the library to handle both the reading and writing of these files.   
+A project I was working was given a file that mapped the 32bit address space into a 530MB file where bits set to 1 indicated integer values that were set.  I decided to expand the library to handle both the reading and writing of these files.  Creating files of that size on my desktop (few year old MacBook Pro) takes about X minutes.  But reading from the file is fairly quick.  
+
+Future enhancements:
+* compressing and decompressing the file
+* optimizing the Writer so that it faster for index files with long sequences of 1s or 0s
+* allowing the Writer to set and unset individual bits
 
 # Limitations
 
