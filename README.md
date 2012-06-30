@@ -1,4 +1,4 @@
-# Bitindex
+# Bitindex [![Build Status](https://secure.travis-ci.org/palmergs/bitindex.png?branch=master)](http://travis-ci.org/palmergs/bitindex)
 
 Bitindex is a simple gem for writing binary files where the position of a 1 in the bits of the file indicates a true value and 0 indicates a false.  The default is to read from left to right so that a file that consists of `1000 1000` could be read to return true for the value 0 and the value 4 and false for all other integer values.
 
