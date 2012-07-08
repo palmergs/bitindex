@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Bitindex::VERSION
   s.authors     = ['Galen Palmer']
   s.email       = ['palmergs@gmail.com']
-  s.homepage    = 'http://malachitedesigns.com'
+  s.homepage    = 'https://github.com/palmergs/bitindex'
   s.summary     = %q{Build a file where, given an integer value, the bit at that position indicates true or false.}
   s.description = %q{This library contains a Writer and Reader interface to create files where the position of a bit within the file indicates a true or false value.}
 
