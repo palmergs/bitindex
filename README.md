@@ -11,6 +11,7 @@ w = Bitindex::Writer.new file, size_in_bytes
 w.write [1,2,3,8000]
 
 r = Bitindex::Reader.new file
+r.is_set? 1      # true
 r.is_set? 8000   # true
 r.is_set? 8001   # false
 r.is_set? 2**32  # false
