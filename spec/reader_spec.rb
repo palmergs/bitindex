@@ -20,16 +20,16 @@ describe Bitindex::Reader do
       FileUtils.touch filepath
 
       r = Bitindex::Reader.new filepath
-      r.ltor.should be_true
+      r.ltor.should == true
 
       r = Bitindex::Reader.new filepath, { ltor: false }
-      r.ltor.should be_false
+      r.ltor.should == false
 
       FileUtils.rm filepath 
     end
   end
 
-  describe '.is_set?' do
+  describe '.set?' do
     it 'can read values in a single byte file' do
       
       filepath = 'reader.bit'
@@ -38,21 +38,21 @@ describe Bitindex::Reader do
       end
 
       r = Bitindex::Reader.new filepath
-      r.is_set?(0).should be_true
-      r.is_set?(1).should be_false
-      r.is_set?(3).should be_false
-      r.is_set?(4).should be_true
-      r.is_set?(5).should be_false
-      r.is_set?(7).should be_false
+      r.set?(0).should == true
+      r.set?(1).should == false
+      r.set?(3).should == false
+      r.set?(4).should == true
+      r.set?(5).should == false
+      r.set?(7).should == false
 
       
       r = Bitindex::Reader.new filepath, { ltor: false }
-      r.is_set?(0).should be_false
-      r.is_set?(1).should be_false
-      r.is_set?(3).should be_true
-      r.is_set?(4).should be_false
-      r.is_set?(5).should be_false
-      r.is_set?(7).should be_true
+      r.set?(0).should == false
+      r.set?(1).should == false
+      r.set?(3).should == true
+      r.set?(4).should == false
+      r.set?(5).should == false
+      r.set?(7).should == true
 
       FileUtils.rm filepath
     end
@@ -69,16 +69,16 @@ describe Bitindex::Reader do
       end
 
       r = Bitindex::Reader.new filepath
-      r.is_set?(0).should be_true
-      r.is_set?(8).should be_false
-      r.is_set?(16).should be_true
-      r.is_set?(24).should be_false
+      r.is_set?(0).should == true
+      r.is_set?(8).should == false
+      r.is_set?(16).should == true
+      r.is_set?(24).should == false
 
       r = Bitindex::Reader.new filepath, { ltor: false }
-      r.is_set?(0).should be_true
-      r.is_set?(8).should be_false
-      r.is_set?(16).should be_false
-      r.is_set?(24).should be_false
+      r.is_set?(0).should == true
+      r.is_set?(8).should == false
+      r.is_set?(16).should == false
+      r.is_set?(24).should == false
 
       FileUtils.rm filepath
     end

@@ -13,7 +13,7 @@ module Bitindex
       @ltor = !(opts[:ltor] == false)
     end
 
-    def is_set? value
+    def set? value
       result = false
       File.open(self.filepath, 'rb') do |io|
         idx = byte_pos value
@@ -24,6 +24,8 @@ module Bitindex
       end
       result
     end
+    alias :is_set? :set?
+
 
     def all_set array
       arr = []

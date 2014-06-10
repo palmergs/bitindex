@@ -14,10 +14,10 @@ describe Bitindex::Writer do
 
     it 'can set "left to right" as an option' do
       w = Bitindex::Writer.new 'file.bit', 10
-      w.ltor.should be_true
+      w.ltor.should == true
 
       w = Bitindex::Writer.new 'file.bit', 10, { ltor: false }
-      w.ltor.should be_false
+      w.ltor.should == false
     end
   end
 

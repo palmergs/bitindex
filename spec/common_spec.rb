@@ -54,20 +54,20 @@ describe Bitindex::Common do
 
   describe '.bit_set?' do
     it 'should determine if a bit within a byte is set' do
-      (0..15).each {|n| @test.bit_set?(0x00, n).should be_false }
-      (0..15).each {|n| @test.bit_set?(0xff, n).should be_true }
+      (0..15).each {|n| @test.bit_set?(0x00, n).should == false }
+      (0..15).each {|n| @test.bit_set?(0xff, n).should == true }
     end
 
     it 'finds set bit left to right' do
       byte = 0xf0 # 11110000
-      (0..3).each {|n| @test.bit_set?(byte, n).should be_true }
-      (4..7).each {|n| @test.bit_set?(byte, n).should be_false }
+      (0..3).each {|n| @test.bit_set?(byte, n).should == true }
+      (4..7).each {|n| @test.bit_set?(byte, n).should == false }
     end
 
     it 'finds set bit right to left' do
       byte = 0xf0 # 11110000
-      (0..3).each {|n| @test.bit_set?(byte, n, false).should be_false }
-      (4..7).each {|n| @test.bit_set?(byte, n, false).should be_true }
+      (0..3).each {|n| @test.bit_set?(byte, n, false).should == false }
+      (4..7).each {|n| @test.bit_set?(byte, n, false).should == true }
     end
   end
 end
